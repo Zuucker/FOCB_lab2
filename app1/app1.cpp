@@ -1,49 +1,39 @@
 ﻿#include <iostream>
+#include <fstream>
+#include <string>
+
 using namespace std;
 
 
-int read_int() {
-    int number;
-    cout << "Give me a number: ";
-    cin >> number;
-
-    return number;
-}
-
-int fibonacci_iter(int index) {
-
-    int a = 0,b = 1;
-    if (index == 0 || index == 1 )
-    {
-        return index;
-    }
-    for (int i=1;i<index;i++)
-    {
-        int tmp = a + b;
-        a = b;
-        b = tmp;
-    }
-    return b;
-
-}
-
-int fibonacci_rec(int index) {
-
-    if (index <2)
-    {
-        return index;
-    }
-    
-    return fibonacci_rec(index-2)+fibonacci_rec(index-1);
-}
-
 int main()
 {
-    cout << "Please introduce a number: ";
-    int index = read_int();
+    
+    ofstream file;
+    file.open("new_file.txt");// /Users/Cryst/Desktop/polsl/repos/FOCB_lab2/app1/test.txt
+    file << "This is the first line!\n";
+    file << "This is the first second!\n";
+    file << "This is the first thrid!\n";
+    file.close();
 
-    int result = fibonacci_rec(index);
-    cout << "The result is: " << result << endl;
+    ifstream new_file("new_file.txt");
 
-    return 0;
+    if (new_file.is_open())
+    {
+        int selected_line=1;
+        int counter = 0;
+
+        string line;
+        while (getline(new_file,line)) {
+            if (counter == selected_line)
+            {
+                cout << line << endl;
+            }
+            counter++;
+        }
+        new_file.close();
+    }
+    else {
+        cout << "There was a problem with opening the file!";
+    }
+
 }
