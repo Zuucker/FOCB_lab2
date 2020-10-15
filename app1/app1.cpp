@@ -1,39 +1,65 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
+int read_int()
+{
+    int x;
+    cin >> x;
+    return x;
+}
 
 int main()
 {
-    
-    ofstream file;
-    file.open("new_file.txt");// /Users/Cryst/Desktop/polsl/repos/FOCB_lab2/app1/test.txt
-    file << "This is the first line!\n";
-    file << "This is the first second!\n";
-    file << "This is the first thrid!\n";
-    file.close();
+    cout << "How many numbers do you want to write?" << endl;
+    int totalNumbers = read_int();
 
-    ifstream new_file("new_file.txt");
+    vector<int> values;
+
+    for (int i = 0; i < totalNumbers; i++)
+    {
+        int tmp = read_int();
+        values.push_back(tmp);
+    }
+
+    ofstream file;
+    file.open("values.txt");// /Users/Cryst/Desktop/polsl/repos/FOCB_lab2/app1/test.txt
+    
+    for (int i = 0; i < totalNumbers; i++)
+    {
+        file << values[i]<<"\n";
+    }
+
+    file.close();
+    
+    vector<int> readValues;
+
+    ifstream new_file("values.txt");
 
     if (new_file.is_open())
     {
-        int selected_line=1;
-        int counter = 0;
-
         string line;
+
         while (getline(new_file,line)) {
-            if (counter == selected_line)
-            {
-                cout << line << endl;
-            }
-            counter++;
+
+            readValues.push_back(std::stoi(line, nullptr,10));
         }
+
         new_file.close();
     }
     else {
         cout << "There was a problem with opening the file!";
     }
 
+    float sum = 0;
+
+    for (int i = 0; i < totalNumbers; i++) {
+        sum += readValues[i];
+    }
+
+    float mean = sum / totalNumbers;
+    cout << "Mean= " <<mean<< endl;
 }
