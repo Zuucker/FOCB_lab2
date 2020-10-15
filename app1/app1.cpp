@@ -19,17 +19,24 @@ int read_int() {
     return number;
 }
 
+int pow(int base,int power) {
+    int result=1;
+
+    for (int i = 0; i <power; i++)
+    {
+        result *= base;
+    }
+    return result;
+
+}
+
 int main()
 {
-    int number = read_int();
+    int base = read_int();
+    int power = read_int();
 
-    if (is_prime(number)) {
-        cout << "Your number is prime";
-    }
-    else
-    {
-        cout << "Your number is not prime";
-    }
+    int result = pow(base, power);
+    cout << "The result is: " << result << endl;
 
     return 0;
 }
