@@ -1,15 +1,6 @@
 ﻿#include <iostream>
 using namespace std;
 
-bool is_prime(int x) {
-    for (int i = 2; i < x; i++)
-    {
-        if (x % i == 0) {
-            return false;
-        }
-    }
-    return true;
-}
 
 int read_int() {
     int number;
@@ -19,23 +10,28 @@ int read_int() {
     return number;
 }
 
-int pow(int base,int power) {
-    int result=1;
+int fibonacci_iter(int index) {
 
-    for (int i = 0; i <power; i++)
+    int a = 0,b = 1;
+    if (index == 0 || index == 1 )
     {
-        result *= base;
+        return index;
     }
-    return result;
+    for (int i=2;i<index;i++)
+    {
+        int tmp = a + b;
+        a = b;
+        b = tmp;
+    }
+    return b;
 
 }
 
 int main()
 {
-    int base = read_int();
-    int power = read_int();
+    int index = read_int();
 
-    int result = pow(base, power);
+    int result = fibonacci_iter(index);
     cout << "The result is: " << result << endl;
 
     return 0;
