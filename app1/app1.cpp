@@ -17,7 +17,7 @@ int fibonacci_iter(int index) {
     {
         return index;
     }
-    for (int i=2;i<index;i++)
+    for (int i=1;i<index;i++)
     {
         int tmp = a + b;
         a = b;
@@ -27,11 +27,22 @@ int fibonacci_iter(int index) {
 
 }
 
+int fibonacci_rec(int index) {
+
+    if (index <2)
+    {
+        return index;
+    }
+    
+    return fibonacci_rec(index-2)+fibonacci_rec(index-1);
+}
+
 int main()
 {
+    cout << "Please introduce a number: ";
     int index = read_int();
 
-    int result = fibonacci_iter(index);
+    int result = fibonacci_rec(index);
     cout << "The result is: " << result << endl;
 
     return 0;
