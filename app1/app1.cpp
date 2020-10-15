@@ -1,21 +1,35 @@
 ﻿#include <iostream>
 using namespace std;
 
-int main()
-{
-    int x,counter=0;
-    cout << "Give me a number: ";
-    cin >> x;
-
-    for (int i = 2; i<x; i++)
+bool is_prime(int x) {
+    for (int i = 2; i < x; i++)
     {
         if (x % i == 0) {
-            cout << "your number is not primal!";
-            return 0;
+            return false;
         }
     }
+    return true;
+}
 
-    cout << "your number is primal!";
+int read_int() {
+    int number;
+    cout << "Give me a number: ";
+    cin >> number;
+
+    return number;
+}
+
+int main()
+{
+    int number = read_int();
+
+    if (is_prime(number)) {
+        cout << "Your number is prime";
+    }
+    else
+    {
+        cout << "Your number is not prime";
+    }
 
     return 0;
 }
